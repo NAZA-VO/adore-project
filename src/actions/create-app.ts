@@ -7,3 +7,12 @@ import { freestyle } from "@/lib/freestyle";
 import { templates } from "@/lib/templates";
 import { memory, builderAgent } from "@/mastra/agents/builder";
 import { sendMessageWithStreaming } from "@/lib/internal/stream-manager";
+
+
+export async function createApp({
+    initialMessage,
+    templateId,
+  }: {
+    initialMessage?: string;
+    templateId: string;
+  })
