@@ -78,3 +78,10 @@ export async function createApp({
       return appInsertion[0];
   });
   console.timeEnd("database: create app");
+
+  console.time("mastra: create thread");
+  await memory.createThread({
+    threadId: app.id,
+    resourceId: app.id,
+  });
+  console.timeEnd("mastra: create thread");
