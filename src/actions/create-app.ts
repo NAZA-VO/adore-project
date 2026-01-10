@@ -103,3 +103,6 @@ export async function createApp({
   
       console.timeEnd("send initial message");
     }
+
+    return app;
+}
