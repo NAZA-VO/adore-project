@@ -35,3 +35,8 @@ export async function createApp({
       url: templates[templateId].repo,
     },
   });
+  await freestyle.grantGitPermission({
+    identityId: user.freestyleIdentity,
+    repoId: repo.repoId,
+    permission: "write",
+  });
