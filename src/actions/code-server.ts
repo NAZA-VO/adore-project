@@ -11,3 +11,6 @@ export async function getCodeServerUrl({
     const { codeServerUrl } = await freestyle.requestDevServer({
       repoId: repoId,
     });
+
+    return codeServerUrl;
+}
