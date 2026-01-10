@@ -62,3 +62,15 @@ export async function createApp({
         name: initialMessage,
       })
       .returning();
+
+      await tx
+      .insert(appUsers)
+      .values({
+        appId: appInsertion[0].id,
+        userId: user.userId,
+        permissions: "admin",
+        freestyleAccessToken: token.token,
+        freestyleAccessTokenId: token.id,
+        freestyleIdentity: user.freestyleIdentity,
+      })
+      .returning();
