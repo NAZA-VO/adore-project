@@ -40,3 +40,7 @@ export async function createApp({
     repoId: repo.repoId,
     permission: "write",
   });
+
+  const token = await freestyle.createGitAccessToken({
+    identityId: user.freestyleIdentity,
+  });
