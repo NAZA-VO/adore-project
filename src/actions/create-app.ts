@@ -51,3 +51,4 @@ export async function createApp({
   const { mcpEphemeralUrl, fs } = await freestyle.requestDevServer({
     repoId: repo.repoId,
   });
+  console.timeEnd("dev server");
