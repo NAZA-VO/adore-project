@@ -15,4 +15,13 @@ export async function createApp({
   }: {
     initialMessage?: string;
     templateId: string;
-  })
+  }) {
+    console.time("get user");
+    const user = await getUser();
+    console.timeEnd("get user");
+  
+    if (!templates[templateId]) {
+      throw new Error(
+        `Template ${templateId} not found. Available templates: ${Object.keys(templates).join(", ")}`
+      );
+    }
