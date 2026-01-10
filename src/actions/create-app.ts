@@ -74,3 +74,7 @@ export async function createApp({
         freestyleIdentity: user.freestyleIdentity,
       })
       .returning();
+
+      return appInsertion[0];
+  });
+  console.timeEnd("database: create app");
