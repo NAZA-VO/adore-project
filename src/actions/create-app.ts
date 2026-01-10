@@ -85,3 +85,6 @@ export async function createApp({
     resourceId: app.id,
   });
   console.timeEnd("mastra: create thread");
+
+  if (initialMessage) {
+    console.time("send initial message");
