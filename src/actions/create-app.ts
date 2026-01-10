@@ -25,3 +25,13 @@ export async function createApp({
         `Template ${templateId} not found. Available templates: ${Object.keys(templates).join(", ")}`
       );
     }
+
+    console.time("git");
+  const repo = await freestyle.createGitRepository({
+    name: "Unnamed App",
+    public: true,
+    source: {
+      type: "git",
+      url: templates[templateId].repo,
+    },
+  });
