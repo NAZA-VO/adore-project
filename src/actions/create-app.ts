@@ -52,3 +52,13 @@ export async function createApp({
     repoId: repo.repoId,
   });
   console.timeEnd("dev server");
+
+  console.time("database: create app");
+  const app = await db.transaction(async (tx) => {
+    const appInsertion = await tx
+      .insert(appsTable)
+      .values({
+        gitRepo: repo.repoId,
+        name: initialMessage,
+      })
+      .returning();
