@@ -44,3 +44,10 @@ export async function createApp({
   const token = await freestyle.createGitAccessToken({
     identityId: user.freestyleIdentity,
   });
+
+  console.timeEnd("git");
+
+  console.time("dev server");
+  const { mcpEphemeralUrl, fs } = await freestyle.requestDevServer({
+    repoId: repo.repoId,
+  });
