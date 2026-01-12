@@ -46,3 +46,6 @@ await db.delete(appsTable).where(eq(appsTable.id, appId));
     console.warn("Failed to delete remote repository:", error);
     // We still consider the deletion successful even if remote cleanup fails
   }
+
+  return { success: true };
+}
