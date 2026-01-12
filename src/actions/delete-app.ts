@@ -21,3 +21,15 @@ export async function deleteApp(appId: string) {
     if (!userApp || userApp.permissions !== "admin") {
       throw new Error("Unauthorized to delete this app");
     }
+
+    // Get app info before deletion
+  const app = await db
+  .select()
+  .from(appsTable)
+  .where(eq(appsTable.id, appId))
+  .limit(1)
+  .then((apps) => apps.at(0));
+
+if (!app) {
+  throw new Error("App not found");
+}
