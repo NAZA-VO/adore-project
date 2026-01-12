@@ -5,3 +5,19 @@ import { appsTable, appUsers } from "@/db/schema";
 import { db } from "@/db/schema";
 import { and, eq } from "drizzle-orm";
 import { freestyle } from "@/lib/freestyle";
+
+
+export async function deleteApp(appId: string) {
+    const user = await getUser();
+  
+    // Check if user has permission to delete this app
+    const userApp = await db
+      .select()
+      .from(appUsers)
+      .where(and(eq(appUsers.appId, appId), eq(appUsers.userId, user.userId)))
+      .limit(1)
+      .then((apps) => apps.at(0));
+  
+    if (!userApp || userApp.permissions !== "admin") {
+      throw new Error("Unauthorized to delete this app");
+    }
