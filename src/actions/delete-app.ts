@@ -33,3 +33,16 @@ export async function deleteApp(appId: string) {
 if (!app) {
   throw new Error("App not found");
 }
+
+await db.delete(appsTable).where(eq(appsTable.id, appId));
+
+  try {
+    if (app.gitRepo) {
+      await freestyle.deleteGitRepository({
+        repoId: app.gitRepo,
+      });
+    }
+  } catch (error) {
+    console.warn("Failed to delete remote repository:", error);
+    // We still consider the deletion successful even if remote cleanup fails
+  }
